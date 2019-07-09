@@ -17,5 +17,5 @@ requireDir('./src/models');//importando todos os modelos da pasta /models
 //Rotas
 app.use('/', require('./src/Routes'));//referenciando o arquivo q tem todas as rotas
 
-app.listen(3001);//porta q vai ser usada
+app.listen(process.env.PORT || 3000);//porta q vai ser usada
 
