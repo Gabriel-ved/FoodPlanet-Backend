@@ -38,10 +38,10 @@ module.exports ={
             return res.status(400).send({error:"Erro loading product"})
         }
     },
-    async create_updateProduct(req,res){
+    async createProduct(req,res){
         try{
             const { products } = req.body
-            const store = await Store.findById(req.userId).select("+password");
+            const store = await Store.findById(req.userId,{new:true}).select("+password");
             
             await Promise.all(products.map(async product =>{
                 const producP = new Product({ ...product,soldBy :req.userId});

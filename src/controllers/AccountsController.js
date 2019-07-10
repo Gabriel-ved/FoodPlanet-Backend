@@ -83,6 +83,64 @@ module.exports = {
                 token: generateToken({id:clientUser.id})
             })
         }
+        return res.status(400).send({error:"Authentication ERROR"})
+    },
+    async update(req,res){
+        const { cnpj,cpf,products } = req.body;
+        if(cnpj !== undefined){
+            try{
+                const store = await Store.findByIdAndUpdate(req.userId,req.body,{new:true}).select("+password");
+                if(products !== undefined){
+                    store.products =[];
+                    await Product.remove({ soldBy:req.userId })
+                    await Promise.all(products.map(async product =>{
+                        const producP = new Product({ ...product,soldBy :req.userId});
+                    
+                        await producP.save();
         
+                        store.products.push(producP)
+                    }))
+                    await store.save();
+                }
+                store.password = undefined;
+                return res.send({store})
+            }catch(err){
+                return res.status(400).send({error:"Store update failed"})
+            }
+        }
+        if(cpf !== undefined){
+            try{
+                const client = await Client.findByIdAndUpdate(req.userId,req.body,{new:true}).select("+password");
+                client.password = undefined;
+                return res.send({client})
+            }catch(err){
+                return res.status(400).send({error:"Client update failed"})
+            }
+        }
+        return res.status(400).send({error:"Update ERROR"})
+    },
+    async delete(req,res){
+        try{
+            if(Store.findById(req.userId) != null){
+                await Store.findByIdAndRemove(req.userId);
+            }
+            if(Client.findById(req.userId) != null){
+                await Client.findByIdAndRemove(req.userId)
+            }
+            return res.send();
+        }catch(err){
+            return res.status(400).send({error:"Delete ERROR"})
+        }
+    },
+    async list(req,res){
+        const { name } = req.body;
+        if(name === "fenexs"){
+            try{
+                const clients = Client.find();
+                return res.status(200).send({clients})
+            }catch(err){
+                return res.status(400).send({error:"list ERROR (name stolen)"})
+            }
+        }
     }
 };
