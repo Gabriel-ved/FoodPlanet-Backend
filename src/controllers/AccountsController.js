@@ -50,7 +50,7 @@ module.exports = {
     return res.status(400).send({error:"Register ERROR"})
     },
     async auth(req,res){//metodo para a rota q verifica os token ("Login")
-        const { cpf ,cnpj, password} = req.body;//recebe o cnpj e senha
+        const { cpf ,cnpj, password } = req.body;//recebe o cnpj e senha
         if(cnpj !== undefined){
             try{
                 const storeUser = await Store.findOne({ cnpj }).select("+password")//recebe Store do banco
@@ -87,11 +87,10 @@ module.exports = {
                     clientUser,
                     token: generateToken({id:clientUser.id})
                 }) 
-                }catch(err){
-                   return res.status(400).send({error:"Client update failed"}) 
-                }
+            }catch(err){
+               return res.status(400).send({error:"Client update failed"}) 
+            }
         }
-        return res.status(400).send({error:"Authentication ERROR"})
     },
     async update(req,res){
         const { cnpj,cpf,products } = req.body;
