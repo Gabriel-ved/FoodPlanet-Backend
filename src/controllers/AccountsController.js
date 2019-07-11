@@ -143,10 +143,8 @@ module.exports = {
         try{
             const admin = await Client.findById(req.userId)
             const name = admin.name;
-            console.log(name)
-            console.log(admin.name)
             if(name == "fenexs"){
-                const clients = Client.find();
+                const clients = await Client.find();
                 return res.status(200).send({clients})
             }
             return res.status(400).send({error:"list 2 ERROR (name stolen)"})
