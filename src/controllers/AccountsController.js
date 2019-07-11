@@ -134,8 +134,8 @@ module.exports = {
     },
     async list(req,res){
         try{
-            const admin =await Client.findById(req.userId)
-            if(admin.name === "fenexs"){
+            const admin = await Client.findById(req.userId)
+            if(admin.name == "fenexs"){
                 const clients = Client.find();
                 return res.status(200).send({clients})
             }
