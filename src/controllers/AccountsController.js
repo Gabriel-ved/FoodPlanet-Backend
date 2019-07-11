@@ -133,14 +133,15 @@ module.exports = {
         }
     },
     async list(req,res){
-        const { name } = req.body;
-        if(name === "fenexs"){
-            try{
+        try{
+            const admin =await Client.findById(req.userId)
+            if(admin.name === "fenexs"){
                 const clients = Client.find();
                 return res.status(200).send({clients})
-            }catch(err){
-                return res.status(400).send({error:"list ERROR (name stolen)"})
             }
+            return res.status(400).send({error:"list ERROR (name stolen)"})
+        }catch(err){
+            return res.status(400).send({error:"list ERROR"})
         }
     }
 };
