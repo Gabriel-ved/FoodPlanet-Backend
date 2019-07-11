@@ -142,11 +142,12 @@ module.exports = {
     async list(req,res){
         try{
             const admin = await Client.findById(req.userId)
-            if(admin.name === "fenexs"){
+            const name = admin.name
+            if(name == "fenexs"){
                 const clients = Client.find();
                 return res.status(200).send({clients})
             }
-            return res.status(400).send({error:"list ERROR (name stolen)"})
+            return res.status(400).send({error:"list 2 ERROR (name stolen)"})
         }catch(err){
             return res.status(400).send({error:"list ERROR"})
         }
