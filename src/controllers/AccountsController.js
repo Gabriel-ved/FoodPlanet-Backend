@@ -52,36 +52,44 @@ module.exports = {
     async auth(req,res){//metodo para a rota q verifica os token ("Login")
         const { cpf ,cnpj, password} = req.body;//recebe o cnpj e senha
         if(cnpj !== undefined){
-            const storeUser = await Store.findOne({ cnpj }).select("+password")//recebe Store do banco
-            
-            if(!storeUser)
-                return res.status(400).send({ errer:"store not found"})
-            
-            if(!await bcryptjs.compare(password, storeUser.password))//verifica se a senha esta certa
-                return res.status(400).send({ error:"invalid password"})
+            try{
+                const storeUser = await Store.findOne({ cnpj }).select("+password")//recebe Store do banco
 
-            storeUser.password = undefined;//para não retornar a senha
+                if(!storeUser)
+                    return res.status(400).send({ errer:"store not found"})
 
-            res.send({ //retorna a conta e o token
-                storeUser,
-                token: generateToken({id:storeUser.id})
-            })
+                if(!await bcryptjs.compare(password, storeUser.password))//verifica se a senha esta certa
+                    return res.status(400).send({ error:"invalid password"})
+
+                storeUser.password = undefined;//para não retornar a senha
+
+                res.send({ //retorna a conta e o token
+                    storeUser,
+                    token: generateToken({id:storeUser.id})
+                })
+            }catch(err){
+                return res.status(400).send({error:"Store authentication failed"})
+            }
         }
         if(cpf !== undefined){
-             const clientUser = await Client.findOne({ cpf }).select("+password")
+            try{
+                const clientUser = await Client.findOne({ cpf }).select("+password")
 
-             if(!clientUser)
-                return res.status(400).send({error:"client not found"})
-             
-            if(!await bcryptjs.compare(password , clientUser.password))
-                return res.status(400).send({error:"invalid password"})
+                 if(!clientUser)
+                    return res.status(400).send({error:"client not found"})
 
-            clientUser.password = undefined;
+                if(!await bcryptjs.compare(password , clientUser.password))
+                    return res.status(400).send({error:"invalid password"})
 
-            res.send({
-                clientUser,
-                token: generateToken({id:clientUser.id})
-            })
+                clientUser.password = undefined;
+
+                res.send({
+                    clientUser,
+                    token: generateToken({id:clientUser.id})
+                }) 
+                }catch(err){
+                   return res.status(400).send({error:"Client update failed"}) 
+                }
         }
         return res.status(400).send({error:"Authentication ERROR"})
     },
