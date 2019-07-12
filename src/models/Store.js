@@ -4,7 +4,8 @@ const bcryptjs = require('bcryptjs');//encryptar a senha
 const StoreSchema = new mongoose.Schema({//criando o Objeto q e a Store
     name: {
         type: String,
-        required: true
+        required: true,
+        unique:true
     },
     cnpj:{
         type: String,
