@@ -7,6 +7,12 @@ const cors = require('cors');
 const app = express();//iniciando o framework
 app.use(express.json());//para o express aceitar post com json
 app.use(express.urlencoded({extended:true}))
+app.options("/*", function(req, res, next){
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+  res.send(200);
+});
 //app.use(cors())
 //Iniciando o banco de dados
 mongoose.connect(//conectando ao banco de dados mongo
