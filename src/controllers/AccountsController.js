@@ -76,7 +76,7 @@ module.exports = {
                 const clientUser = await Client.findOne({ cpf }).select("+password")
 
                  if(!clientUser)
-                    return res.status(400).send({res.message:"client not found"})
+                    return res.status(400).send({message:"client not found"})
 
                 if(!await bcryptjs.compare(password , clientUser.password))
                     return res.status(400).send(res.message:"invalid password")
