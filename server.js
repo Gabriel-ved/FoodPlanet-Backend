@@ -3,9 +3,10 @@ const mongoose = require('mongoose');//mongodb framework
 const requireDir = require('require-dir');
 const cors = require('cors');
 
-app.use(cors())
+
 //Iniciando o app
-const app = express();//iniciando o framework
+const app = express();
+app.use(cors())//iniciando o framework
 app.use(express.json());//para o express aceitar post com json
 app.use(express.urlencoded({extended:true}))
 
