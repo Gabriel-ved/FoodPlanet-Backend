@@ -41,7 +41,7 @@ module.exports ={
     async createProduct(req,res){
         try{
             const { products } = req.body
-            const store = await Store.findById(req.userId,{new:true}).select("+password");
+            const store = await Store.findById(req.userId).select("+password");
             
             await Promise.all(products.map(async product =>{
                 const producP = new Product({ ...product,soldBy :req.userId});
@@ -55,8 +55,7 @@ module.exports ={
             store.password = undefined;
             return res.send({store})
         }catch(err){
-            console.log(err)
-            return res.status(400).send({error:"Erro creating product"})
+            return res.status(400).send(err)
         }
     },
     async deleteProduct(req,res){
