@@ -51,7 +51,7 @@ module.exports = {
     },
     async auth(req,res){//metodo para a rota q verifica os token ("Login")
         const { cpf ,cnpj, password } = req.body;//recebe o cnpj e senha
-        if(cnpj !== undefined){
+        if(cnpj != undefined){
             try{
                 const storeUser = await Store.findOne({ cnpj }).select("+password")//recebe Store do banco
 
@@ -68,18 +68,18 @@ module.exports = {
                     token: generateToken({id:storeUser.id})
                 })
             }catch(err){
-                return res.status(400).send({error:"Store authentication failed"})
+                return res.status(400).send({"error":"Store authentication failed"})
             }
         }
-        if(cpf !== undefined){
+        if(cpf != undefined){
             try{
                 const clientUser = await Client.findOne({ cpf }).select("+password")
 
                  if(!clientUser)
-                    return res.status(400).send({error:"client not found"})
+                    return res.status(400).send({"error":"client not found"})
 
                 if(!await bcryptjs.compare(password , clientUser.password))
-                    return res.status(400).send({error:"invalid password"})
+                    return res.status(400).send({"error":"invalid password"})
 
                 clientUser.password = undefined;
 
@@ -88,7 +88,7 @@ module.exports = {
                     token: generateToken({id:clientUser.id})
                 }) 
             }catch(err){
-               return res.status(400).send({error:"Client update failed"}) 
+               return res.status(400).send({"error":"Client authentication failed"}) 
             }
         }
     },
