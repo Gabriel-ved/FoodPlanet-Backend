@@ -118,6 +118,7 @@ module.exports = {
         if(cpf !== undefined){
             try{
                 const client = await Client.findByIdAndUpdate(req.userId,req.body,{new:true}).select("+password");
+                await client.save();
                 client.password = undefined;
                 return res.send({client})
             }catch(err){
