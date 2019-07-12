@@ -76,10 +76,10 @@ module.exports = {
                 const clientUser = await Client.findOne({ cpf }).select("+password")
 
                  if(!clientUser)
-                    return res.send({error:"client not found"}).status(400)
+                    return res.status(400).send({message:"client not found"})
 
                 if(!await bcryptjs.compare(password , clientUser.password))
-                    return res.send({error:"invalid password"}).status(400)
+                    return res.status(400).send("invalid password")
 
                 clientUser.password = undefined;
 
@@ -88,7 +88,7 @@ module.exports = {
                     token: generateToken({id:clientUser.id})
                 }) 
             }catch(err){
-               return res.send({error:"Client authentication failed"}).status(400) 
+               return res.status(400).send({message:"Client authentication failed"}) 
             }
         }
     },
