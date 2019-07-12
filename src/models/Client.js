@@ -4,7 +4,8 @@ const bcryptjs = require('bcryptjs');
 const ClientSchema = new  mongoose.Schema({//criando o Objeto/modelo/Schema do client
     name:{
         type:String,
-        required:true
+        required:true,
+        unique:true,
     },
     cpf:{
         type:String,
