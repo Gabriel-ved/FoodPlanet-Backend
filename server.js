@@ -7,7 +7,7 @@ const cors = require('cors');
 const app = express();//iniciando o framework
 app.use(express.json());//para o express aceitar post com json
 app.use(express.urlencoded({extended:true}))
-app.use(cors())
+//app.use(cors())
 //Iniciando o banco de dados
 mongoose.connect(//conectando ao banco de dados mongo
     "mongodb+srv://fpdeploy:fooddeploy@teste-b8h6q.mongodb.net/test?retryWrites=true&w=majority",
