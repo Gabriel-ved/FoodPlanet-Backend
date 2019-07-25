@@ -5,8 +5,8 @@ const cors = require('cors');
 
 
 //Iniciando o app
-const app = express();
-app.use(cors())//iniciando o framework
+const app = express();//iniciando o framework
+app.use(cors())
 app.use(express.json());//para o express aceitar post com json
 app.use(express.urlencoded({extended:true}))
 
@@ -17,6 +17,8 @@ mongoose.connect(//conectando ao banco de dados mongo
 );
 
 requireDir('./src/models');//importando todos os modelos da pasta /models
+
+app.options('*', cors())//ativar o Pre-Flight
 
 //Rotas
 app.use('/', require('./src/Routes'));//referenciando o arquivo q tem todas as rotas
