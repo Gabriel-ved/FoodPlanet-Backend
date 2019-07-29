@@ -27,11 +27,9 @@ module.exports ={
                 page: parseInt(page,10)||1,
                 limit: 6
             }
-
             const products = await Product.paginate({},options);
-            console.log('teste')
-            products.populate('soldBy');
             return res.json(products)
+
         }catch(err){
             return res.status(400).send({error:"Erro loading products"})
         }
