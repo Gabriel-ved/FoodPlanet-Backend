@@ -22,15 +22,16 @@ module.exports ={
     },    
     async listProducts(req,res){
         try{
-            const {page} = req.query;
+            const { page } = req.query;
             const options = {
                 page: parseInt(page,10)||1,
                 limit: 6
             }
 
             const products = await Product.paginate({},options);
+            console.log('teste')
             products.populate('soldBy');
-            return res.send({products})
+            return res.json(products)
         }catch(err){
             return res.status(400).send({error:"Erro loading products"})
         }
