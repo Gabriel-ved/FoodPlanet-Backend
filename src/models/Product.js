@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate');
 
 const ProductSchema = new mongoose.Schema({//criando o Objeto q e a Store
         name:{
@@ -20,5 +21,6 @@ const ProductSchema = new mongoose.Schema({//criando o Objeto q e a Store
             required:true
         }
 });
+ProductSchema.plugin(mongoosePaginate);
 
 mongoose.model('Product',ProductSchema);//setando o StoreSchema como modelo com nome "Store"

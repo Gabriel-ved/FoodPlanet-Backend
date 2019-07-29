@@ -22,8 +22,14 @@ module.exports ={
     },    
     async listProducts(req,res){
         try{
-            const products = await Product.find().populate('soldBy');
+            const {page} = req.query;
+            const options = {
+                page: parseInt(page,10)||1,
+                limit: 6
+            }
 
+            const products = await Product.paginate({},options);
+            products.populate('soldBy');
             return res.send({products})
         }catch(err){
             return res.status(400).send({error:"Erro loading products"})
