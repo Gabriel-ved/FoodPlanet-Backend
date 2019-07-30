@@ -24,8 +24,11 @@ const ProductSchema = new mongoose.Schema({//criando o Objeto q e a Store
         }
 });
 ProductSchema.pre('save', function(){
-    if(!this.url){
+    if(!photoName){
+    }else{
+        if(!this.url){
         this.url = `https://foodplanet-backend.herokuapp.com/files/${this.photoName}`
+        }
     }
 })
 ProductSchema.plugin(mongoosePaginate);
