@@ -15,6 +15,7 @@ const ProductSchema = new mongoose.Schema({//criando o Objeto q e a Store
             type:Number,
             required:true
         },
+        photoName:String,
         soldBy:{
             type:mongoose.Schema.Types.ObjectId,
             ref:'Store',

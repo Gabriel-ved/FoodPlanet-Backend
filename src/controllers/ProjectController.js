@@ -45,16 +45,18 @@ module.exports ={
     },
     async createProduct(req,res){
         try{
-            const { products } = req.body
+            const { products } = req.body;
+            const { filename: photoName } =req.file;
             const store = await Store.findById(req.userId).select("+password");
             
             await Promise.all(products.map(async product =>{
-                const producP = new Product({ ...product,soldBy :req.userId});
-            
+                const producP = new Product({
+                    ...product,
+                    soldBy :req.userId,
+                    photoName,
+                });
                 await producP.save();
-
                 store.products.push(producP)
-                
             }))
             await store.save();
             store.password = undefined;

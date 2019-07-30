@@ -17,6 +17,7 @@ const ClientSchema = new  mongoose.Schema({//criando o Objeto/modelo/Schema do c
         required: true,
         select: false
     },
+    photoName:String,
     date: {
         type: Date,
         default: Date.now 

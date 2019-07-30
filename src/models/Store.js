@@ -17,6 +17,7 @@ const StoreSchema = new mongoose.Schema({//criando o Objeto q e a Store
         required: true,
         select: false
     },
+    photoName:String,
     date: {
         type: Date,
         default: Date.now 
