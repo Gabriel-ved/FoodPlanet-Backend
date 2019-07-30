@@ -80,7 +80,14 @@ module.exports ={
         const { filename } =req.file;
         
         try{
-            const product = await Product.findByIdAndUpdate(req.params.productId,{photoName:filename},{new:true});
+            const product = await Product.findByIdAndUpdate(
+                req.params.productId,
+                {
+                    photoName:filename,
+                    url:`https://foodplanet-backend.herokuapp.com/${photoName}`
+                },
+                {new:true}
+                );
             await product.save();
             return res.send({product})
         }catch(err){
