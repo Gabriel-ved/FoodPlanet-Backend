@@ -19,7 +19,8 @@ routes.get('/stores/:storeId',authMiddleware, ProjectController.listId);
 routes.get('/products/',authMiddleware, ProjectController.listProducts);
 routes.get('/products/:productId',authMiddleware, ProjectController.IdProduct);
 
-routes.post('/products/',authMiddleware,multer(multerConfig).single('file'), ProjectController.createProduct);
+routes.post('/products/',authMiddleware, ProjectController.createProduct);
 routes.delete('/products/:productId',authMiddleware, ProjectController.deleteProduct);
+routes.put('/products/:productId',authMiddleware,multer(multerConfig).single('file'),ProjectController.updateProduct)
 
 module.exports = routes;

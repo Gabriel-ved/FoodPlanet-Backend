@@ -16,12 +16,18 @@ const ProductSchema = new mongoose.Schema({//criando o Objeto q e a Store
             required:true
         },
         photoName:String,
+        url:String,
         soldBy:{
             type:mongoose.Schema.Types.ObjectId,
             ref:'Store',
             required:true
         }
 });
+ProductSchema.pre('save', function(){
+    if(!this.url){
+        this.url = `https://foodplanet-backend.herokuapp.com/files/${this.photoName}`
+    }
+})
 ProductSchema.plugin(mongoosePaginate);
 
 mongoose.model('Product',ProductSchema);//setando o StoreSchema como modelo com nome "Store"

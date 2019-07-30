@@ -46,14 +46,12 @@ module.exports ={
     async createProduct(req,res){
         try{
             const { products } = req.body;
-            const { filename: photoName } =req.file;
             const store = await Store.findById(req.userId).select("+password");
             
             await Promise.all(products.map(async product =>{
                 const producP = new Product({
                     ...product,
-                    soldBy :req.userId,
-                    photoName,
+                    soldBy :req.userId
                 });
                 await producP.save();
                 store.products.push(producP)
@@ -76,6 +74,17 @@ module.exports ={
             return res.status(400).send({error:"Token invalid"})
         }catch(err){
             return res.status(400).send({error:"Erro deleting product"})
+        }
+    },
+    async updateProduct(req,res){
+        const { filename } =req.file;
+        
+        try{
+            const product = await Product.findByIdAndUpdate(req.params.productId,{photoName:filename},{new:true});
+            await product.save();
+            return res.send({product})
+        }catch(err){
+            return res.status(400).send({error:"Erro updating product"})
         }
     }
 } 
