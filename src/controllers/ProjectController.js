@@ -84,7 +84,7 @@ module.exports ={
                 req.params.productId,
                 {
                     photoName:filename,
-                    url:`https://foodplanet-backend.herokuapp.com/${photoName}`
+                    url:`https://foodplanet-backend.herokuapp.com/${filename}`
                 },
                 {new:true}
                 );
