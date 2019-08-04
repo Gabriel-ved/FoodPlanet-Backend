@@ -95,7 +95,7 @@ module.exports = {
     async update(req,res){
         const { products } = req.body;
         if(await Store.findById(req.userId)){
-            // try{
+            try{
             //     if(req.file){
             //         const { filename } =req.file;
             //         const store = await Store.findByIdAndUpdate(
