@@ -97,7 +97,8 @@ module.exports = {
         const { filename } =req.file;
         if(await Store.findById(req.userId)){
             try{
-                const store = await Store.findByIdAndUpdate(
+                if(filename){
+                    const store = await Store.findByIdAndUpdate(
                     req.userId,
                     {...req.body,
                     photoName:filename,
@@ -106,6 +107,14 @@ module.exports = {
                 {new:true})
                 .select("+password");
 
+                }else{
+                    const store = await Store.findByIdAndUpdate(
+                        req.userId,
+                        {...req.body },
+                    {new:true})
+                    .select("+password");
+                }
+                
                 if(products !== undefined){
                     store.products =[];
                     await Product.remove({ soldBy:req.userId })
