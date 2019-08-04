@@ -93,9 +93,9 @@ module.exports = {
         }
     },
     async update(req,res){
-        const { cnpj,cpf,products } = req.body;
+        const { products } = req.body;
         const { filename } =req.file;
-        if(cnpj !== undefined){
+        if(await Store.findById(req.userId)){
             try{
                 const store = await Store.findByIdAndUpdate(
                     req.userId,
@@ -124,7 +124,7 @@ module.exports = {
                 return res.status(400).send({error:"Store update failed"})
             }
         }
-        if(cpf !== undefined){
+        if(await Client.findById(req.userId)){
             try{
                 const client = await Client.findByIdAndUpdate(
                     req.userId,

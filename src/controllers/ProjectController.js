@@ -78,7 +78,6 @@ module.exports ={
     },
     async updateProduct(req,res){
         const { filename } =req.file;
-        
         try{
             const product = await Product.findByIdAndUpdate(
                 req.params.productId,

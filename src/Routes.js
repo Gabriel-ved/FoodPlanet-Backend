@@ -9,7 +9,7 @@ const ProjectController = require('./controllers/ProjectController.js');//contro
 
 routes.post('/register', AccountsController.register);//caminho e metodo q vai ser ultilizado nessa rota
 routes.post('/auth', AccountsController.auth);
-routes.put('/account/',multer(multerConfig).single('file'),authMiddleware, AccountsController.update);
+routes.put('/account/',authMiddleware, multer(multerConfig).single('file'),AccountsController.update);
 routes.delete('/account/',authMiddleware, AccountsController.delete);
 routes.get('/account/',authMiddleware, AccountsController.list);
 
