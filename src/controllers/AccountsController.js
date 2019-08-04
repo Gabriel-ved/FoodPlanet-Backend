@@ -94,11 +94,9 @@ module.exports = {
     },
     async update(req,res){
         const { products } = req.body;
+        const { filename } = req.file;
         if(await Store.findById(req.userId)){
             try{
-                console.log(req.file)
-                if(req.file !== undefined){
-                    const { filename } = req.file;
                     const store = await Store.findByIdAndUpdate(
                     req.userId,
                     {...req.body,
@@ -107,14 +105,6 @@ module.exports = {
                 },
                 {new:true})
                 .select("+password");
-
-                }else{
-                    const store = await Store.findByIdAndUpdate(
-                        req.userId,
-                        {...req.body },
-                    {new:true})
-                    .select("+password");
-                }
                 
                 if(products !== undefined){
                     store.products =[];
