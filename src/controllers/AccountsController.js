@@ -95,25 +95,25 @@ module.exports = {
     async update(req,res){
         const { products } = req.body;
         if(await Store.findById(req.userId)){
-            try{
-                if(req.file){
-                    const { filename } =req.file;
-                    const store = await Store.findByIdAndUpdate(
-                    req.userId,
-                    {...req.body,
-                    photoName:filename,
-                    url:`https://foodplanet-backend.herokuapp.com/files/${filename}`
-                },
-                {new:true})
-                .select("+password");
+            // try{
+            //     if(req.file){
+            //         const { filename } =req.file;
+            //         const store = await Store.findByIdAndUpdate(
+            //         req.userId,
+            //         {...req.body,
+            //         photoName:filename,
+            //         url:`https://foodplanet-backend.herokuapp.com/files/${filename}`
+            //     },
+            //     {new:true})
+            //     .select("+password");
 
-                }else{
+            //     }else{
                     const store = await Store.findByIdAndUpdate(
                         req.userId,
                         {...req.body },
                     {new:true})
                     .select("+password");
-                }
+                // }
                 
                 if(products !== undefined){
                     store.products =[];
