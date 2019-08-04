@@ -94,12 +94,13 @@ module.exports = {
     },
     async update(req,res){
         const { products } = req.body;
-        if(req.file !== undefined ){
-           const { filename } = req.file; 
-        }
+        
         if(await Store.findById(req.userId)){
 
             try{
+                if(req.file !== undefined ){
+                    const { filename } = req.file; 
+                }
                     const store = await Store.findByIdAndUpdate(
                     req.userId,
                     {...req.body,
@@ -124,7 +125,7 @@ module.exports = {
                 store.password = undefined;
                 return res.send({store})
             }catch(err){
-                return res.status(400).send({error:"Store update failed"})
+                return res.status(400).send({error:err})
             }
         }
         if(await Client.findById(req.userId)){
