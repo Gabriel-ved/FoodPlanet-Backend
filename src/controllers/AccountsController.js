@@ -97,7 +97,7 @@ module.exports = {
         const { filename } =req.file;
         if(await Store.findById(req.userId)){
             try{
-                if(filename){
+                if(filename !== undefined){
                     const store = await Store.findByIdAndUpdate(
                     req.userId,
                     {...req.body,
