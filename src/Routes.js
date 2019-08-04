@@ -7,9 +7,9 @@ const authMiddleware = require('./middlewares/authe');//middleware para fazer ve
 const AccountsController = require('./controllers/AccountsController.js');//controller das "contas"
 const ProjectController = require('./controllers/ProjectController.js');//controller do resto do site/projeto
 
-routes.post('/register',multer(multerConfig).single('file'), AccountsController.register);//caminho e metodo q vai ser ultilizado nessa rota
+routes.post('/register', AccountsController.register);//caminho e metodo q vai ser ultilizado nessa rota
 routes.post('/auth', AccountsController.auth);
-routes.put('/account/',authMiddleware, AccountsController.update);
+routes.put('/account/',multer(multerConfig).single('file'),authMiddleware, AccountsController.update);
 routes.delete('/account/',authMiddleware, AccountsController.delete);
 routes.get('/account/',authMiddleware, AccountsController.list);
 

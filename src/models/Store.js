@@ -18,6 +18,7 @@ const StoreSchema = new mongoose.Schema({//criando o Objeto q e a Store
         select: false
     },
     photoName:String,
+    url:String,
     date: {
         type: Date,
         default: Date.now 

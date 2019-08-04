@@ -94,9 +94,18 @@ module.exports = {
     },
     async update(req,res){
         const { cnpj,cpf,products } = req.body;
+        const { filename } =req.file;
         if(cnpj !== undefined){
             try{
-                const store = await Store.findByIdAndUpdate(req.userId,req.body,{new:true}).select("+password");
+                const store = await Store.findByIdAndUpdate(
+                    req.userId,
+                    {...req.body,
+                    photoName:filename,
+                    url:`https://foodplanet-backend.herokuapp.com/files/${filename}`
+                },
+                {new:true})
+                .select("+password");
+
                 if(products !== undefined){
                     store.products =[];
                     await Product.remove({ soldBy:req.userId })
@@ -117,7 +126,17 @@ module.exports = {
         }
         if(cpf !== undefined){
             try{
-                const client = await Client.findByIdAndUpdate(req.userId,req.body,{new:true}).select("+password");
+                const client = await Client.findByIdAndUpdate(
+                    req.userId,
+                    {
+                    ...req.body,
+                    photoName:filename,
+                    url:`https://foodplanet-backend.herokuapp.com/files/${filename}`
+                    
+                },
+                {new:true})
+                .select("+password");
+
                 await client.save();
                 client.password = undefined;
                 return res.send({client})
