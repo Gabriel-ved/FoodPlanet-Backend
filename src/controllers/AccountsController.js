@@ -92,21 +92,52 @@ module.exports = {
             }
         }
     },
+    async upload(req,res){
+        if(await Store.findById(req.userId)){
+            try{
+                const { filename } = req.file; 
+                const store = await Store.findByIdAndUpdate(
+                    req.userId,
+                    {
+                    photoName:filename,
+                    url:`https://foodplanet-backend.herokuapp.com/files/${filename}`
+                },
+                {new:true})
+
+                await store.save()
+                return res.send({store})
+            }catch(err){
+                return res.status(400).send({error:err})
+            }
+        }
+        if(await Client.findById(req.userId)){
+            try{
+                const { filename } = req.file; 
+                
+                const client = await Client.findByIdAndUpdate(
+                    req.userId,
+                    {
+                    photoName:filename,
+                    url:`https://foodplanet-backend.herokuapp.com/files/${filename}`  
+                },
+                {new:true})
+
+                await client.save();
+                return res.send({client})
+            }catch(err){
+                return res.status(400).send({error:"Client upload failed"})
+            }
+        }
+        return res.status(400).send({error:"Upload ERROR"})
+    },
     async update(req,res){
         const { products } = req.body;
         
         if(await Store.findById(req.userId)){
-
             try{
-                if(req.file !== undefined ){
-                    const { filename } = req.file; 
-                }
-                    const store = await Store.findByIdAndUpdate(
+                const store = await Store.findByIdAndUpdate(
                     req.userId,
-                    {...req.body,
-                    photoName:filename,
-                    url:`https://foodplanet-backend.herokuapp.com/files/${filename}`
-                },
+                    {...req.body},
                 {new:true})
                 .select("+password");
                 
@@ -132,12 +163,7 @@ module.exports = {
             try{
                 const client = await Client.findByIdAndUpdate(
                     req.userId,
-                    {
-                    ...req.body,
-                    photoName:filename,
-                    url:`https://foodplanet-backend.herokuapp.com/files/${filename}`
-                    
-                },
+                    {...req.body},
                 {new:true})
                 .select("+password");
 
