@@ -101,13 +101,11 @@ module.exports = {
                     {
                     photoName:filename,
                     url:`https://foodplanet-backend.herokuapp.com/files/${filename}`
-                },
-                {new:true})
-
-                await store.save()
-                return res.send({store})
+                    },
+                    {new:true});
+                return res.send(JSON.stringify(store))
             }catch(err){
-                return res.status(400).send({error:err})
+                return res.status(400).send({error:JSON.stringify(err)})
             }
         }
         if(await Client.findById(req.userId)){
@@ -119,13 +117,11 @@ module.exports = {
                     {
                     photoName:filename,
                     url:`https://foodplanet-backend.herokuapp.com/files/${filename}`  
-                },
-                {new:true})
-
-                await client.save();
+                    },
+                    {new:true})
                 return res.send({client})
             }catch(err){
-                return res.status(400).send({error:"Client upload failed"})
+                return res.status(400).send({error:err})
             }
         }
         return res.status(400).send({error:"Upload ERROR"})
