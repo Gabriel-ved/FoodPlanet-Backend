@@ -119,7 +119,7 @@ module.exports = {
                     url:`https://foodplanet-backend.herokuapp.com/files/${filename}`  
                     },
                     {new:true})
-                return res.send({client})
+                return res.send(JSON.stringify(client))
             }catch(err){
                 return res.status(400).send({error:err})
             }
