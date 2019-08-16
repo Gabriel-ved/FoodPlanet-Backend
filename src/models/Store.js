@@ -25,20 +25,16 @@ const StoreSchema = new mongoose.Schema({//criando o Objeto q e a Store
     },
     local:{
         street:{
-            type:String,
-            required:true
+            type:String
         },
         city:{
-            type:String,
-            required:true
+            type:String
         },
         state:{
-            type:String,
-            required:true
+            type:String
         },
         cep:{
-            type:String,
-            required:true
+            type:String
         }
     },
     products:[{
