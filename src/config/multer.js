@@ -27,8 +27,7 @@ module.exports= {
     
                 cb(null,fileName);
             })
-        },
-        bucket:process.env.GCS_BUCKET
+        }
     }),
     limits:{
         fileSize:2*1024*1024,
