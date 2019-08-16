@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "foodplanet-247802",
+  "private_key_id": "5c7fc7fa2f13bcfb5de03e29116a6d9c548bf31e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCtJxRwiJIDTuDC\n/uZYxTu/nzGz/bA99ZX3iag3p2PWXPMT3oW4EwVVcTvMYJOIKGsbaqJGKi/oFNPA\nwibYix9HW1/reqM1oGRXwKJ3vQMGapeUoqeVgaPK2bJZuy727LTGuAYGYK1g6cId\nSRCZO3DLR4/COHtgrlvzrimr4dQ3WY8PqkdlUxZkBaKlxkz7O+QEcsuKgOjmtObx\nklsOSfyGZrQZfueVEgNgCYy374Q8TUUv4Lc4juMTgALFWSgduUyuf4iCT7T7uZXg\nNZ4kXSEjbAMh+K8vTsF+SHZyIVgZnMLxW9VJLrCtZq4bteaU3RUpmHR6MxFxsFTJ\nZPkgr8lPAgMBAAECggEAH0FsqRud78bvP4OvpNqFfIOJ/0mN5MFN/s70dIdcuDcz\nEaUbUizsy42TE8NjHjLdkqde/3diCmyoBKWHSZNjZAgUenc6utVnB4gYS7DsuN3I\n2uW5hn1OSbGeRiBJy/zSbQSO4dvVsCbCCXNE8cQPCkKyqoZzjvIqWwRXNVWgbxUJ\nahXhpWaNlPY3iV9dIzO8R7GMygLFwlALRrsei1qz6JDUdGEWuvc4hF/Uc522ka6l\n8kqXOtnnLm15Q3G/gMZowoY6LbRYMu71JUhs/LnQ1/nj5UDU0JZbDGkWTPYC8xXj\nMyd7LzbuEpNjLSXt6VVlCAN5gaxIZeqPbgDdCDgK8QKBgQDdHWAMzfHXfcWFIEX0\nmyK3S88IDaYQsk8uhhQj2HnpGu+R81OY1VpTlWzMX+NEcA6sT4q/M3TB11MXZSvE\n6HkjXjl6hmFWKa4ATriBpoLzpyg9CB0WbjV+6EunXEfDn/vM+kFKO7CjOjR+4+G1\nCkj1vy39opuZK7z6LMxjfwI1VQKBgQDIeI8i2KQ4uI0kf5iHD+HJqoi/ID7egALr\n5/UIzdPmgt0fLg5UVLAJkAEDRDjd3mVMHvM29fkQOAy51/9GJ+wfQKDXJmuq4POm\nGJMBSXdhFFWFdaN2GYmJKJ3WcR7JS8b/YLEQH36LRmnC1XknNqF8/9md/EwpU5s1\nCFs8D+6EEwKBgB6S/0MF/xjS9UrxKXsnMGez/c6ZRIsufLBsLcC/ICxRYysFQFvz\ntGe2U7L211ARRpYg8Yh6rvxWr9CeVq0FkCqJztzYVAE8BilYuT6ELbtPM8ssogkF\n+DOyHzPnGK0+I+019W00T7piQ/v/uqfz4h7I7q0RnP5TA/B73U8ssrt5AoGATpLq\nT1cobs7vC0ozp2RzNA7yUC88VQtJmdstsIi0MFpEfw8XMLiM0wKtUvFvdI7Rl1de\nLsGUIGZHnqPpez70jn9PS2TUuII5HXXuUIfSEavdpVSpgAWcYbUYwE9QKMfZtIja\nfZ5KhB5SH7p6JQOFoi/JxOF5nI0XfV7MG6uG6h8CgYBtG8OuH+3QrtoaDHDuoh57\nRKV+KmjS/HQVmVi2ele74DIiP4wzUQS4fgvNWXDYs01w4Go5P39Yr9ZT9wxkvlNa\ntGoxk83XaXKW4Q9XLCm4sQQlWVckm2kqlVE3rW9lNsWjpzZSS1imN3jPZVTYe0BE\nwl20ZVSb3bu7VSLBOqcEEQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "foodplanet-api@foodplanet-247802.iam.gserviceaccount.com",
+  "client_id": "112564599322115409983",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/foodplanet-api%40foodplanet-247802.iam.gserviceaccount.com"
+}

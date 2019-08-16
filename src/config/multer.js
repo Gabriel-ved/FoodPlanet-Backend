@@ -1,19 +1,31 @@
 const multer = require('multer');
 const path = require('path');
 const crypto = require('crypto');
+const multerGoogleStorage = require("multer-google-storage");
 
+// multer.diskStorage({
+//     destination:(req,file,cb)=>{
+//         cb(null, path.resolve(__dirname,'..','..','tmp','upload'))
+//     },
+//     filename:(req,file,cb)=>{
+//         crypto.randomBytes(16, (err,hash)=>{
+//             if(err) cb(err);
+
+//             const fileName = `${hash.toString('hex')}-${file.originalname}`;
+
+//             cb(null,fileName);
+//         })
+//     }
+// })
 module.exports= {
     dest: path.resolve(__dirname,'..','..','tmp','upload'),
-    storage: multer.diskStorage({
-        destination:(req,file,cb)=>{
-            cb(null, path.resolve(__dirname,'..','..','tmp','upload'))
-        },
+    storage: multerGoogleStorage.storageEngine({
         filename:(req,file,cb)=>{
             crypto.randomBytes(16, (err,hash)=>{
                 if(err) cb(err);
-
+    
                 const fileName = `${hash.toString('hex')}-${file.originalname}`;
-
+    
                 cb(null,fileName);
             })
         }

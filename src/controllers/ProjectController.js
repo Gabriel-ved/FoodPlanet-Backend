@@ -83,7 +83,7 @@ module.exports ={
                 req.params.productId,
                 {
                     photoName:filename,
-                    url:`https://foodplanet-backend.herokuapp.com/files/${filename}`
+                    url:`https://storage.cloud.google.com/foodplanet-imagens/${filename}`
                 },
                 {new:true}
                 );
