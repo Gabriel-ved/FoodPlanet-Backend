@@ -83,7 +83,7 @@ module.exports ={
                 req.params.productId,
                 {
                     photoName:filename,
-                    url:`https://storage.cloud.google.com/foodplanet-imagens/${filename}`
+                    url:`https://storage.googleapis.com/foodplanet-imagens/${filename}`
                 },
                 {new:true}
                 );

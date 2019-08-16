@@ -100,7 +100,7 @@ module.exports = {
                     req.userId,
                     {
                     photoName:filename,
-                    url:`https://storage.cloud.google.com/foodplanet-imagens/${filename}`
+                    url:`https://storage.googleapis.com/foodplanet-imagens/${filename}`
                     },
                     {new:true});
                 return res.send(JSON.stringify(store))
@@ -116,7 +116,7 @@ module.exports = {
                     req.userId,
                     {
                     photoName:filename,
-                    url:`https://storage.cloud.google.com/foodplanet-imagens/${filename}`  
+                    url:`https://storage.googleapis.com/foodplanet-imagens/${filename}`  
                     },
                     {new:true})
                 return res.send(JSON.stringify(client))
