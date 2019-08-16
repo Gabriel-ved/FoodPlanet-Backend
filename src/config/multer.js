@@ -2,7 +2,6 @@ const multer = require('multer');
 const path = require('path');
 const crypto = require('crypto');
 const multerGoogleStorage = require("multer-google-storage");
-
 // multer.diskStorage({
 //     destination:(req,file,cb)=>{
 //         cb(null, path.resolve(__dirname,'..','..','tmp','upload'))
@@ -28,7 +27,8 @@ module.exports= {
     
                 cb(null,fileName);
             })
-        }
+        },
+        bucket:process.env.GCS_BUCKET
     }),
     limits:{
         fileSize:2*1024*1024,
