@@ -1,3 +1,4 @@
+require('dotenv').config
 const express = require('express');//backend framework for nodejs
 const mongoose = require('mongoose');//mongodb framework
 const requireDir = require('require-dir');
