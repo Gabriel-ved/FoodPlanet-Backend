@@ -24,10 +24,22 @@ const ClientSchema = new  mongoose.Schema({//criando o Objeto/modelo/Schema do c
         default: Date.now 
     },
     local:{
-        street:String,
-        City:String,
-        state:String,
-        cep:String
+        street:{
+            type:String,
+            required:true
+        },
+        city:{
+            type:String,
+            required:true
+        },
+        state:{
+            type:String,
+            required:true
+        },
+        cep:{
+            type:String,
+            required:true
+        }
     }
 })
 

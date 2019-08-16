@@ -24,24 +24,26 @@ const StoreSchema = new mongoose.Schema({//criando o Objeto q e a Store
         default: Date.now 
     },
     local:{
-        street:String,
-        City:String,
-        state:String,
-        cep:String
+        street:{
+            type:String,
+            required:true
+        },
+        city:{
+            type:String,
+            required:true
+        },
+        state:{
+            type:String,
+            required:true
+        },
+        cep:{
+            type:String,
+            required:true
+        }
     },
     products:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Product',
-    }],
-    employee:[{
-        name:String,
-        cpf:String,
-        date:{
-            type: Date,
-            default: Date.now   
-        },
-        sector:String,
-        salary:Number
     }]
 });
 

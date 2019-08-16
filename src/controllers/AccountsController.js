@@ -102,7 +102,9 @@ module.exports = {
                     photoName:filename,
                     url:`https://storage.googleapis.com/foodplanet-imagens/${filename}`
                     },
-                    {new:true});
+                    {new:true}).select("+password");
+                    await store.save();
+                    store.password = undefined;
                 return res.send(JSON.stringify(store))
             }catch(err){
                 return res.status(400).send({error:JSON.stringify(err)})
@@ -118,7 +120,10 @@ module.exports = {
                     photoName:filename,
                     url:`https://storage.googleapis.com/foodplanet-imagens/${filename}`  
                     },
-                    {new:true})
+                    {new:true}).select("+password");
+
+                    await client.save();
+                    client.password = undefined;
                 return res.send(JSON.stringify(client))
             }catch(err){
                 return res.status(400).send({error:err})

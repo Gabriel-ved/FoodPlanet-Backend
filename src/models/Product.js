@@ -6,10 +6,9 @@ const ProductSchema = new mongoose.Schema({//criando o Objeto q e a Store
             type:String,
             required:true,
         },
-        code:{
-            type:Number,
+        description:{
+            type:String,
             required:true,
-            unique:true,
         },
         value:{
             type:Number,
