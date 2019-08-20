@@ -149,7 +149,6 @@ module.exports = {
         
                         store.products.push(producP)
                     }))
-                    await store.save();
                 }
                 store.password = undefined;
                 return res.send({store})
@@ -164,8 +163,6 @@ module.exports = {
                     {...req.body},
                 {new:true})
                 .select("+password");
-
-                await client.save();
                 client.password = undefined;
                 return res.send({client})
             }catch(err){
