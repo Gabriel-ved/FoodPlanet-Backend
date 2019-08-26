@@ -29,7 +29,7 @@ module.exports = {
             });
         }catch(err){
             return res.status(400).send({ error:"Register failed"})
-        } 
+        }
       }
       if( cpf !== undefined ){// verifica se o cpf foi passado pelo json
         try{
@@ -45,7 +45,7 @@ module.exports = {
             });
         }catch(err){
             return res.status(400).send({ error:"Register failed"})
-        } 
+        }
       }
     return res.status(400).send({error:"Register ERROR"})
     },
@@ -86,16 +86,16 @@ module.exports = {
                 res.send({
                     clientUser,
                     token: generateToken({id:clientUser.id})
-                }) 
+                })
             }catch(err){
-               return res.status(400).send("Client authentication failed") 
+               return res.status(400).send("Client authentication failed")
             }
         }
     },
     async upload(req,res){
         if(await Store.findById(req.userId)){
             try{
-                const { filename } = req.file; 
+                const { filename } = req.file;
                 const store = await Store.findByIdAndUpdate(
                     req.userId,
                     {
@@ -111,13 +111,13 @@ module.exports = {
         }
         if(await Client.findById(req.userId)){
             try{
-                const { filename } = req.file; 
-                
+                const { filename } = req.file;
+
                 const client = await Client.findByIdAndUpdate(
                     req.userId,
                     {
                     photoName:filename,
-                    url:`https://storage.googleapis.com/foodplanet-imagens/${filename}`  
+                    url:`https://storage.googleapis.com/foodplanet-imagens/${filename}`
                     },
                     {new:true}).select("+password");
                     client.password = undefined;
@@ -130,7 +130,7 @@ module.exports = {
     },
     async update(req,res){
         const { products } = req.body;
-        
+
         if(await Store.findById(req.userId)){
             try{
                 const store = await Store.findByIdAndUpdate(
@@ -138,18 +138,18 @@ module.exports = {
                     {...req.body},
                 {new:true})
                 .select("+password");
-                
-                if(products !== undefined){
-                    store.products =[];
-                    await Product.remove({ soldBy:req.userId })
-                    await Promise.all(products.map(async product =>{
-                        const producP = new Product({ ...product,soldBy :req.userId});
-                    
-                        await producP.save();
-        
-                        store.products.push(producP)
-                    }))
-                }
+
+                // if(products !== undefined){
+                //     store.products =[];
+                //     await Product.remove({ soldBy:req.userId })
+                //     await Promise.all(products.map(async product =>{
+                //         const producP = new Product({ ...product,soldBy :req.userId});
+                //
+                //         await producP.save();
+                //
+                //         store.products.push(producP)
+                //     }))
+                // }
                 store.password = undefined;
                 return res.send({store})
             }catch(err){
