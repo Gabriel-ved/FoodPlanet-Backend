@@ -4,8 +4,8 @@ const Product = mongoose.model('Product');
 module.exports ={
     async list(req,res){
         try{
-            const stores = await Store.find().populate('products');
-        
+            const stores = await Store.find();
+
             return res.send({stores})
         }catch(err){
             return res.status(400).send({error:"Erro loading stores"})
@@ -13,13 +13,13 @@ module.exports ={
     },
     async listId(req,res){
         try{
-            const store = await Store.findById(req.params.storeId);
+            const store = await Store.findById(req.params.storeId).populate('products');
 
             return res.send({store})
         }catch(err){
             return res.status(400).send({error:"Erro loading store"})
         }
-    },    
+    },
     async listProducts(req,res){
         try{
             const { page } = req.query;
@@ -37,7 +37,7 @@ module.exports ={
     async IdProduct(req,res){
         try{
             const product = await Product.findById(req.params.productId).populate('soldBy');
-            
+
             return res.send({product})
         }catch(err){
             return res.status(400).send({error:"Erro loading product"})
@@ -47,7 +47,7 @@ module.exports ={
         try{
             const { products } = req.body;
             const store = await Store.findById(req.userId).select("+password");
-            
+
             await Promise.all(products.map(async product =>{
                 const producP = new Product({
                     ...product,
@@ -93,4 +93,4 @@ module.exports ={
             return res.status(400).send({error:"Erro updating product"})
         }
     }
-} 
+}
