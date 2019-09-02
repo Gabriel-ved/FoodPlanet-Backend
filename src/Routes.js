@@ -23,6 +23,6 @@ routes.get('/products/:productId',authMiddleware, ProjectController.IdProduct);
 routes.post('/products',authMiddleware, ProjectController.createProduct);
 routes.delete('/products/:productId',authMiddleware, ProjectController.deleteProduct);
 routes.post('/products/:productId',authMiddleware,multer(multerConfig).single('file'),ProjectController.uploadImgProduct);
-roustes.put('/products/:productId',authMiddleware,ProjectController.updateProduct)
+routes.put('/products/:productId',authMiddleware,ProjectController.updateProduct)
 
 module.exports = routes;
