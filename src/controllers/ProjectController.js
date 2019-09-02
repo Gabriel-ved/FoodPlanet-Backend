@@ -77,7 +77,7 @@ module.exports ={
             return res.status(400).send({error:"Erro deleting product"})
         }
     },
-    async updateProduct(req,res){
+    async uploadImgProduct(req,res){
         const { filename } =req.file;
         try{
             const product = await Product.findByIdAndUpdate(
@@ -91,7 +91,22 @@ module.exports ={
             await product.save();
             return res.send({product})
         }catch(err){
-            return res.status(400).send({error:"Erro updating product"})
+            return res.status(400).send({error:"Erro uploading img product"})
         }
+    },
+    async updateProduct(req,res){
+      try{
+        const product = await Product.findByIdAndUpdate(
+          req.params.productId,
+          {
+            ...req.body
+          },
+          {new:true}
+        );
+        await product.save();
+        return res.send({product})
+      }catch(err){
+        return res.status(400).send({error:"Erro updating product"})
+      }
     }
 }

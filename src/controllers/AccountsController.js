@@ -129,8 +129,6 @@ module.exports = {
         return res.status(400).send({error:"Upload ERROR"})
     },
     async update(req,res){
-        const { products } = req.body;
-
         if(await Store.findById(req.userId)){
             try{
                 const store = await Store.findByIdAndUpdate(
