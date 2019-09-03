@@ -56,7 +56,7 @@ module.exports ={
                 newProducts.push(producP)
             }))
             const store = await Store.findByIdAndUpdate(req.userId,{
-              products:[...newProducts]
+              products:[...products,...newProducts]
             },{new:true}).select("+password");
             store.password = undefined;
             return res.send({store})
