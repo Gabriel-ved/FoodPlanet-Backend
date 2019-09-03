@@ -45,16 +45,14 @@ module.exports ={
     },
     async createProduct(req,res){
         try{
-            const { name,description,value } = req.body;
-            const producP = await Product.create({
+            const { name,description,value } = req.body; 
+            const store = await Store.findByIdAndUpdate(req.userId,{
+                products:[... await Product.create({
                     name,
                     description,
                     value,
                     soldBy :req.userId
-                });
-                console.log(producP)
-            const store = await Store.findByIdAndUpdate(req.userId,{
-                products:[...{producP}]
+                })]
             })
             return res.send({store})
         }catch(err){
