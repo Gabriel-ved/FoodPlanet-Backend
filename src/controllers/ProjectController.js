@@ -45,9 +45,11 @@ module.exports ={
     },
     async createProduct(req,res){
         try{
-            const { products } = req.body;
+            const { name,description,value } = req.body;
             const producP = new Product({
-                    ...products,
+                    name,
+                    description,
+                    value,
                     soldBy :req.userId
                 });
                 await producP.save();
