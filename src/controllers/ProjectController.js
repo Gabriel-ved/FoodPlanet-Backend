@@ -54,7 +54,6 @@ module.exports ={
                     value,
                     soldBy :req.userId
                 });
-                console.log(producP)
             
             const store = await Store.findByIdAndUpdate(req.userId,{
                 products:[...store1.products,producP]
@@ -71,13 +70,8 @@ module.exports ={
         try{
             const store = await Store.findById(req.userId);
             if(store != null){
-                console.log(store)
                 const i = store.products.indexOf(req.params.productId)
-                console.log(i)
-                console.log(store.products)
                 const newProducts = store.products.splice(i,1)
-                console.log(newProducts)
-                console.log(store.products)
                 await Store.findByIdAndUpdate(req.userId,{
                     products:store.products
                 },{new:true})
