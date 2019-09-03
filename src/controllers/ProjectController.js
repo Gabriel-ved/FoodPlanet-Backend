@@ -46,17 +46,14 @@ module.exports ={
     async createProduct(req,res){
         try{
             const { products } = req.body;
-            const store = await Store.findById(req.userId).select("+password")
-            await Promise.all(products.map(async product =>{
-                const producP = new Product({
-                    ...product,
+            const producP = new Product({
+                    ...products,
                     soldBy :req.userId
                 });
                 await producP.save();
-                store.products.push(producP)
-            }))
-            store.save()
-            store.password= undefined
+            const store = await Store.findByIdAndUpdate(req.userId,{
+                products:[...{producP}]
+            })
             return res.send({store})
         }catch(err){
             console.log(err)
