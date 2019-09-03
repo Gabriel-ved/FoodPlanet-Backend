@@ -45,7 +45,7 @@ module.exports ={
     },
     async createProduct(req,res){
         try{
-                const producP = new Product({
+                const producP = await new Product({
                     ...req.body,
                     soldBy :req.userId
                 });
