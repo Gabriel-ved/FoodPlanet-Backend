@@ -54,7 +54,7 @@ module.exports ={
                 });
                 await producP.save();
             const store = await Store.findByIdAndUpdate(req.userId,{
-                products:[...producP]
+                products:[...{producP}]
             })
             return res.send({store})
         }catch(err){
