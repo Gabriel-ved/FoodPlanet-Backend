@@ -45,18 +45,23 @@ module.exports ={
     },
     async createProduct(req,res){
         try{
+            const store1 = await Store.findById(req.userId)
             const { name,description,value } = req.body;
-            const producP = await Product.create({
+            if(store1 != null){
+               const producP = await Product.create({
                     name,
                     description,
                     value,
                     soldBy :req.userId
                 });
                 console.log(producP)
+            
             const store = await Store.findByIdAndUpdate(req.userId,{
-                products:[producP]
+                products:[...store1.products,producP]
             })
-            return res.send({store})
+            return res.send({store}) 
+            }
+            return res.status(401).send('loja nao existe')
         }catch(err){
             console.log(err)
             return res.status(400).send(err)
