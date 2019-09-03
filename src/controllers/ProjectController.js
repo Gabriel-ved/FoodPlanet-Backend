@@ -78,10 +78,10 @@ module.exports ={
                 const newProducts = store.products.splice(i,1)
                 console.log(newProducts)
                 console.log(store.products)
-                await Product.findByIdAndRemove(req.params.productId);
-                Store.findByIdAndUpdate(req.userId,{
+                await Store.findByIdAndUpdate(req.userId,{
                     products:store.products
                 },{new:true})
+                await Product.findByIdAndRemove(req.params.productId);
                 return res.send()
             }
             return res.status(400).send({error:"Token invalid"})
