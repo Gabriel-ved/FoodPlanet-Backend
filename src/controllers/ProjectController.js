@@ -74,11 +74,13 @@ module.exports ={
                 console.log(store)
                 const i = store.products.indexOf(req.params.productId)
                 console.log(i)
+                console.log(store.products)
                 const newProducts = store.products.splice(i,1)
                 console.log(newProducts)
+                console.log(store.products)
                 await Product.findByIdAndRemove(req.params.productId);
                 Store.findByIdAndUpdate(req.userId,{
-                    products:newProducts
+                    products:store.products
                 },{new:true})
                 return res.send()
             }
