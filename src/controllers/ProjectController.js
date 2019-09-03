@@ -56,6 +56,7 @@ module.exports ={
             store.password = undefined;
             return res.send({producP})
         }catch(err){
+            console.log(err)
             return res.status(400).send(err)
         }
     },
