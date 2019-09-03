@@ -47,7 +47,6 @@ module.exports ={
         try{
             const {name,description,value}=req.body;
                 const producP = await new Product({
-                    ...
                     name,
                     description,
                     value,
