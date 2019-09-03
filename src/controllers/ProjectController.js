@@ -45,8 +45,12 @@ module.exports ={
     },
     async createProduct(req,res){
         try{
+            const {name,description,value}=req.body;
                 const producP = await new Product({
-                    ...req.body,
+                    ...
+                    name,
+                    description,
+                    value,
                     soldBy :req.userId
                 });
                 await producP.save();
