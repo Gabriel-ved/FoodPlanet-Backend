@@ -52,7 +52,7 @@ module.exports ={
                     value,
                     soldBy :req.userId
                 });
-                await producP.save();
+                console.log(producP)
             const store = await Store.findByIdAndUpdate(req.userId,{
                 products:[...{producP}]
             })
