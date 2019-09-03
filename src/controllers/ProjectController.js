@@ -59,7 +59,7 @@ module.exports ={
               products:[...newProducts]
             },{new:true}).select("+password");
             store.password = undefined;
-            return res.send({store})
+            return res.send({newProducts})
         }catch(err){
             return res.status(400).send(err)
         }
